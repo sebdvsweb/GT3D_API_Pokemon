@@ -1,4 +1,9 @@
+# Pokemon-API
+
 ## TP
+
+Le but de cet exercice est de communiquer avec Tyradex, une des pricipales API Pokémon en français.  
+Et d'afficher nos Pokémons de manière dynamique dans des cards Bootstrap.
 
 ### Consignes : Récupérer et afficher les Pokémon de la 1ère génération
 Dans cet exercice, vous allez utiliser JavaScript pour récupérer et afficher les Pokémon de la 1ère génération à partir d'une API. Vous apprendrez à manipuler les données pour créer une interface visuelle.
@@ -10,21 +15,23 @@ Déclarez une URL correspondant à l'API des Pokémon de la 1ère génération :
 const url = "https://tyradex.app/api/v1/gen/1";
 ```
 
-Utilisez la fonction fetch pour récupérer les données. Ajoutez une vérification pour vous assurer que la réponse est correcte :
+Utilisez la fonction fetch pour récupérer les données. Par exemple :
 
 ```js
-fetch(url)
-  .then(function(response) {
-    if (!response.ok) {
-      throw new Error("Erreur lors de la récupération des données : " + response.status);
-    }
+fetch(url).then(function(response) {
     return response.json();
   });
 ```
 
+Stocker la réponse dans une variable :
+
+```js
+    const pokedex = response.json();
+```
+
 ### Étape 2 : Manipuler et afficher les données
 
-1.Parcourez les données retournées par l'API avec la méthode .forEach.
+1. Parcourez les données retournées par l'API avec la méthode **forEach**.
 À chaque itération, récupérez les informations importantes pour chaque Pokémon :
 
  - Numéro
@@ -35,7 +42,7 @@ fetch(url)
 Les Pokémons pouvant avoir deux types, on va les _mapper_
 
 ```js
-pokemon.types.map(type => type.name).join(", ") // à mettre dans notre variable types
+pokemon.types.map(type => type.name).join(", ") // à mettre dans notre variable `types`
 ```
 
 2. Créez dynamiquement avec la méthode `createElement` une _card_ Bootstrap pour chaque Pokémon, et la remplir avec les éléments suivants :
@@ -44,7 +51,7 @@ pokemon.types.map(type => type.name).join(", ") // à mettre dans notre variable
  - Un titre qui contient le numéro et le titre
  - Un paragraphe indiquant le(s) type(s)
 
-3. Ajoutez ces cartes avec la méthode `appendChild` dans une section HTML (par exemple, avec une div de classe .pokemon-list).
+3. Ajoutez ces cartes avec la méthode `appendChild` dans `<div class="pokemon-list">`.
 
 4. Ajouter du CSS pour rendre le rendu impeccable !
 
